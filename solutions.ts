@@ -41,3 +41,14 @@ const filterByRating = (products: Product[]): Product[] => {
     const selectedProducts = products.filter(product => product.rating >= 4);
     return selectedProducts;
 }
+
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    isActive: boolean;
+}
+
+const filterActiveUsers = (users: User[]): User[] => {
+    return users.filter(user => user.isActive);
+}
