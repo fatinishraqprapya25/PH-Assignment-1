@@ -63,3 +63,31 @@ interface Book {
 const printBookDetails = (book: Book) => {
     console.log(`Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable ? "Yes" : "No"}`);
 }
+
+type ArrayType = number[] | string[];
+type ArrayValueType = number | string;
+
+const checkvalueIsIncludedOrNot = (array: any[], value: ArrayValueType): boolean => {
+    let i: number;
+    for (i = 0; i < array.length; i++) {
+        if (array[i] === value) {
+            return true;
+        }
+    }
+    return false;
+}
+
+const getUniqueValues = (array1: ArrayType, array2: ArrayType): ArrayType => {
+    const newArr: ArrayType = [];
+    for (let x = 0; x < array1.length; x++) {
+        newArr[x] = array1[x];
+    }
+    let index = newArr.length;
+    for (let i = 0; i < array2.length; i++) {
+        if (!checkvalueIsIncludedOrNot(newArr, array2[i])) {
+            newArr[index] = array2[i];
+            index++;
+        }
+    }
+    return newArr;
+}
