@@ -1,3 +1,4 @@
+// Problem 1
 type FormatValueTypes = number | string | boolean;
 
 const formatValue = (value: FormatValueTypes): FormatValueTypes => {
@@ -10,6 +11,7 @@ const formatValue = (value: FormatValueTypes): FormatValueTypes => {
     }
 }
 
+// Problem 2
 const getLength = (value: string | any[]): number => {
     if (typeof value === "string") {
         return value.length;
@@ -20,6 +22,7 @@ const getLength = (value: string | any[]): number => {
     throw new Error("invalid type");
 }
 
+// Problem 3
 class Person {
     name: string;
     age: number;
@@ -32,6 +35,7 @@ class Person {
     }
 }
 
+// Problem 4
 interface Product {
     title: string;
     rating: number;
@@ -42,6 +46,7 @@ const filterByRating = (products: Product[]): Product[] => {
     return selectedProducts;
 }
 
+// Problem 5
 interface User {
     id: number;
     name: string;
@@ -53,6 +58,7 @@ const filterActiveUsers = (users: User[]): User[] => {
     return users.filter(user => user.isActive);
 }
 
+// Problem 6
 interface Book {
     title: string;
     author: string;
@@ -64,6 +70,7 @@ const printBookDetails = (book: Book) => {
     console.log(`Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable ? "Yes" : "No"}`);
 }
 
+// Problem 7
 type ArrayType = number[] | string[];
 type ArrayValueType = number | string;
 
@@ -91,3 +98,38 @@ const getUniqueValues = (array1: ArrayType, array2: ArrayType): ArrayType => {
     }
     return newArr;
 }
+
+
+// Problem 8
+interface Product2 {
+    name: string;
+    price: number;
+    quantity: number;
+    discount?: number;
+}
+
+const calculateTotalPrice = (products: Product2[]): number => {
+    const totalSaleAmount = products.reduce((total: number, currentProduct: Product2) => {
+        const { price, quantity } = currentProduct;
+
+        let totalAmount = price * quantity;
+        if (currentProduct?.discount) {
+
+            total += totalAmount - ((currentProduct.discount / 100) * totalAmount);
+            return total;
+        } else {
+            total += totalAmount;
+            return total;
+        }
+
+    }, 0);
+    return totalSaleAmount;
+}
+
+const products = [
+    { name: 'Pen', price: 10, quantity: 2 },
+    { name: 'Notebook', price: 25, quantity: 3, discount: 10 },
+    { name: 'Bag', price: 50, quantity: 1, discount: 20 },
+];
+
+console.log(calculateTotalPrice(products));
