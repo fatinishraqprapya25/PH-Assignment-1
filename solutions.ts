@@ -70,17 +70,6 @@ const printBookDetails = (book: Book) => {
 }
 
 type ArrayType = number[] | string[];
-type ArrayValueType = number | string;
-
-const checkvalueIsIncludedOrNot = (array: any[], value: ArrayValueType): boolean => {
-    let i: number;
-    for (i = 0; i < array.length; i++) {
-        if (array[i] === value) {
-            return true;
-        }
-    }
-    return false;
-}
 
 const getUniqueValues = (array1: ArrayType, array2: ArrayType): ArrayType => {
     const newArr: ArrayType = [];
