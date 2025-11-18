@@ -1,4 +1,3 @@
-// Problem 1
 type FormatValueTypes = number | string | boolean;
 
 const formatValue = (value: FormatValueTypes): FormatValueTypes => {
@@ -11,7 +10,7 @@ const formatValue = (value: FormatValueTypes): FormatValueTypes => {
     }
 }
 
-// Problem 2
+
 const getLength = (value: string | any[]): number => {
     if (typeof value === "string") {
         return value.length;
@@ -22,7 +21,7 @@ const getLength = (value: string | any[]): number => {
     throw new Error("invalid type");
 }
 
-// Problem 3
+
 class Person {
     name: string;
     age: number;
@@ -35,7 +34,7 @@ class Person {
     }
 }
 
-// Problem 4
+
 interface Product {
     title: string;
     rating: number;
@@ -46,7 +45,7 @@ const filterByRating = (products: Product[]): Product[] => {
     return selectedProducts;
 }
 
-// Problem 5
+
 interface User {
     id: number;
     name: string;
@@ -58,7 +57,7 @@ const filterActiveUsers = (users: User[]): User[] => {
     return users.filter(user => user.isActive);
 }
 
-// Problem 6
+
 interface Book {
     title: string;
     author: string;
@@ -70,7 +69,6 @@ const printBookDetails = (book: Book) => {
     console.log(`Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable ? "Yes" : "No"}`);
 }
 
-// Problem 7
 type ArrayType = number[] | string[];
 type ArrayValueType = number | string;
 
@@ -86,21 +84,29 @@ const checkvalueIsIncludedOrNot = (array: any[], value: ArrayValueType): boolean
 
 const getUniqueValues = (array1: ArrayType, array2: ArrayType): ArrayType => {
     const newArr: ArrayType = [];
-    for (let x = 0; x < array1.length; x++) {
-        newArr[x] = array1[x];
-    }
-    let index = newArr.length;
-    for (let i = 0; i < array2.length; i++) {
-        if (!checkvalueIsIncludedOrNot(newArr, array2[i])) {
-            newArr[index] = array2[i];
-            index++;
+    const map: { [key: string]: boolean } = {};
+
+    for (let i: number = 0; i < array1.length; i++) {
+        const value = array1[i];
+        const key = String(value);
+        if (!map[key]) {
+            map[key] = true;
+            newArr[newArr.length] = value;
         }
     }
+
+    for (let j: number = 0; j < array2.length; j++) {
+        const value = array2[j];
+        const key = String(value);
+        if (!map[key]) {
+            map[key] = true;
+            newArr[newArr.length] = value;
+        }
+    }
+
     return newArr;
 }
 
-
-// Problem 8
 interface Product2 {
     name: string;
     price: number;
@@ -126,10 +132,3 @@ const calculateTotalPrice = (products: Product2[]): number => {
     return totalSaleAmount;
 }
 
-const products = [
-    { name: 'Pen', price: 10, quantity: 2 },
-    { name: 'Notebook', price: 25, quantity: 3, discount: 10 },
-    { name: 'Bag', price: 50, quantity: 1, discount: 20 },
-];
-
-console.log(calculateTotalPrice(products));
