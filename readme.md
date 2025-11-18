@@ -43,3 +43,32 @@ function getObjectProperty(key: ObjectUnionType) {
 
 console.log(getObjectProperty('name'));
 ```
+
+# Difference between `any`, `unknown` and `never` types in TypeScript.
+
+আমরা মুলত টাইপস্ক্রিপ্ট ব্যবহার করি টাইপ সেফটির জন্য। যদি আমরা ভুল টাইপের ডাটা ইউজ করি, তাহলে কুখনো কখনো ইরোর আসতে পারে। সেই ইরোরকে ঠেকাতেই মুলত আমরা টাইপস্ক্রিপ্ট ব্যাবহার করি। টাইপ্সক্রিপ্ট আমাদের অনেক ধরনের টাইপ অফার করে। তার মধ্যে কয়েকটি `any`, `unknow` এবং `never` টাইপ।
+
+`any`: এর মানে, এই টাইপ যেখানে ব্যবহার করা হবে সেখানে সব ধরনের মান ব্যবহার করা যাবে। এটি ব্যবহার করলে টাইপস্ক্রিপ্ট আর কোনো টাইপ চেক করে না। এটি ব্যবহারের ফলে আমরা যেকোনো কাজ করতে পারি, এমনকি ভুল কাজও করতে পারি।
+
+let value: any;
+value = "prapya"
+value = 17;
+value.toUpperCase();
+
+`unknown`: any এবং unknown এর ব্যবহার কিছুটা কাছাকাছি। তবে any ব্যবহার করা মানে, ওই ভেরিএবল সব ধরনের ডাটা নিতে পারে, তবে কিছু করার আগে আমাদেরকে অবশ্যই টাইপ চেক করতে হবে। 
+
+```tsx
+let value: unknown;
+value = true;
+if (typeof value === "string") {
+    value.toUpperCase();
+}
+```
+
+`never`: এটি এমন টাইপ যেটি কোনো ভ্যালু ধারণ করে না। যখন কোনো ফাংশন কিছু রিটার্ন করে না তখন আমরা এই টাইপ ব্যবহার করি।
+
+```tsx
+const throwNewError = (message: string): never => {
+    throw new Error(message);
+}
+```
